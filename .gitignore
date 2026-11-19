@@ -1,0 +1,5 @@
+.claude/
+.impeccable/hook.cache.json
+.impeccable/live/
+Thumbs.db
+.DS_Store

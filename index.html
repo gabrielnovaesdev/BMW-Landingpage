@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>BMW M3 Competition — Por dentro e por fora</title>
+  <meta name="description" content="Uma volta completa pela BMW M3 Competition Sedan com M xDrive, guiada pela rolagem.">
+  <meta name="theme-color" content="#0c0e0d">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/brand/bmw-logo-light.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="is-loading">
+
+  <!-- ===== Entrada: conta-giros de carregamento + janela que abre para o filme ===== -->
+  <div class="loader" id="loader" role="status" aria-label="Carregando o passeio">
+    <div class="loader__bars" aria-hidden="true">
+      <i class="loader__bar loader__bar--top"></i>
+      <i class="loader__bar loader__bar--bottom"></i>
+      <i class="loader__bar loader__bar--left"></i>
+      <i class="loader__bar loader__bar--right"></i>
+    </div>
+
+    <div class="loader__ui" id="loaderUI">
+      <img class="loader__logo" src="assets/brand/bmw-logo-light.svg" alt="BMW" width="56" height="56">
+      <svg class="tach" id="tach" viewBox="0 0 240 150" aria-hidden="true">
+        <g id="tachTicks"></g>
+        <path class="tach__track" id="tachTrack" d="" />
+        <path class="tach__fill" id="tachFill" d="" />
+        <g class="tach__needle" id="tachNeedle"><line x1="120" y1="120" x2="120" y2="38" /><circle cx="120" cy="120" r="4" /></g>
+      </svg>
+      <p class="loader__count" aria-hidden="true"><span id="loaderCount">000</span><small>%</small></p>
+      <p class="loader__unit" aria-hidden="true">Carregando o passeio</p>
+    </div>
+
+    <dl class="loader__meta loader__meta--tl" aria-hidden="true"><dt>Modelo</dt><dd>BMW M3 Competition Sedan</dd></dl>
+    <dl class="loader__meta loader__meta--tr" aria-hidden="true"><dt>Tração</dt><dd>M xDrive</dd></dl>
+    <dl class="loader__meta loader__meta--bl" aria-hidden="true"><dt>Motor</dt><dd>3.0 M TwinPower Turbo, 6 cilindros</dd></dl>
+    <dl class="loader__meta loader__meta--br" aria-hidden="true"><dt>Potência</dt><dd>390 kW / 530 cv</dd></dl>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="topbar" id="topbar">
+    <a class="topbar__name" href="#top" data-scroll-to="#top">M3 Competition</a>
+    <a class="topbar__logo" href="#top" data-scroll-to="#top" aria-label="BMW, voltar ao início">
+      <img src="assets/brand/bmw-logo-light.svg" alt="" width="38" height="38">
+    </a>
+    <a class="topbar__link" href="#ficha" data-scroll-to="#ficha">Ficha técnica</a>
+  </header>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- ===== Passeio guiado pela rolagem ===== -->
+      <section class="stage" id="top" aria-label="Apresentação em vídeo controlada pela rolagem">
+        <div class="stage__frame" id="frame">
+          <div class="stage__media" id="media">
+            <video id="film" src="assets/m3-60.mp4" poster="assets/poster.jpg"
+                   muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
+          </div>
+          <div class="stage__shade" aria-hidden="true"></div>
+          <div class="veil" id="veil" aria-hidden="true"></div>
+        </div>
+
+        <svg class="stage__lines" id="lines" aria-hidden="true"></svg>
+        <div class="stage__dots" id="dots" aria-hidden="true"></div>
+
+        <div class="hero" id="intro">
+          <h1 class="hero__title"><span class="hero__line">M3</span> <span class="hero__line">Competition</span></h1>
+          <p class="hero__lead">Sedan com tração M xDrive e 530 cv. Role a página para dar uma volta completa no carro, por fora e por dentro.</p>
+          <div class="scrollhint"><span></span>Role para começar</div>
+        </div>
+
+        <div class="stage__cards" id="cards"></div>
+
+        <nav class="rail" id="rail" aria-label="Capítulos do passeio"></nav>
+
+        <div class="outro" id="outro">
+          <h2 class="outro__title">Gostou do passeio? Tem mais aqui embaixo.</h2>
+          <div class="outro__actions">
+            <a class="btn" href="#manifesto" data-scroll-to=".manifesto">
+              Continuar descendo
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0-6-6m6 6 6-6"/></svg>
+            </a>
+            <a class="link-quiet" href="#ficha" data-scroll-to="#ficha">Pular para a ficha técnica</a>
+          </div>
+        </div>
+
+        <div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+      </section>
+
+      <!-- ===== Landing ===== -->
+      <main class="landing">
+
+        <!-- Manifesto: as palavras acendem com a rolagem -->
+        <section class="manifesto" aria-label="Apresentação">
+          <p class="manifesto__text" id="manifesto">Seis cilindros em linha, tração integral com prioridade traseira e uma cabine que olha para quem dirige. A M3 Competition é um sedan de quatro portas que não esconde de onde veio.</p>
+        </section>
+
+        <!-- Desenho -->
+        <section class="split" id="design" aria-labelledby="designTitle">
+          <div class="split__text">
+            <h2 id="designTitle">Bonito até parado</h2>
+            <p>Grade vertical, para-lamas largos e rodas de medidas diferentes na frente e atrás. A M3 Competition mostra o que é antes mesmo de ligar o motor.</p>
+            <dl class="facts">
+              <div><dt>Comprimento</dt><dd>4.794 mm</dd></div>
+              <div><dt>Largura</dt><dd>1.903 mm</dd></div>
+              <div><dt>Entre-eixos</dt><dd>2.857 mm</dd></div>
+            </dl>
+          </div>
+          <figure class="split__media reveal">
+            <img src="assets/stills/tres-quartos.jpg" alt="BMW M3 Competition verde vista em três quartos pela frente, com os faróis acesos" loading="lazy" width="1920" height="1080">
+          </figure>
+        </section>
+
+        <!-- Engenharia: imagem fixa que troca conforme a lista avança -->
+        <section class="engineering" id="engenharia" aria-labelledby="engTitle">
+          <div class="engineering__media" aria-hidden="true">
+            <div class="engineering__frame">
+              <img src="assets/stills/lateral.jpg" alt="" class="is-active" loading="lazy" width="1920" height="1080">
+              <img src="assets/stills/roda.jpg" alt="" loading="lazy" width="1600" height="900">
+              <img src="assets/stills/frente.jpg" alt="" loading="lazy" width="1920" height="1080">
+              <img src="assets/stills/traseira.jpg" alt="" loading="lazy" width="1920" height="1080">
+            </div>
+            <ol class="engineering__steps"><li></li><li></li><li></li><li></li></ol>
+          </div>
+          <div class="engineering__list">
+            <h2 id="engTitle">Engenharia M, peça por peça</h2>
+            <article class="eng-item">
+              <h3>M xDrive</h3>
+              <p>Tração integral com prioridade traseira e três modos: 4WD, 4WD Sport e 2WD. O último funciona com o controle de estabilidade desligado.</p>
+              <p class="eng-item__data">Modos de tração <strong>3</strong></p>
+            </article>
+            <article class="eng-item">
+              <h3>Freios M Compound</h3>
+              <p>Pinças fixas de seis pistões na frente e flutuantes de um pistão atrás, com discos ventilados. Os carbon-cerâmicos opcionais pesam cerca de 14 kg a menos.</p>
+              <p class="eng-item__data">Pistões por pinça dianteira <strong>6</strong></p>
+            </article>
+            <article class="eng-item">
+              <h3>Suspensão M adaptativa</h3>
+              <p>Eixo dianteiro em alumínio com geometria específica M e eixo traseiro de cinco braços, com subchassi aparafusado de forma rígida à carroceria.</p>
+              <p class="eng-item__data">Braços no eixo traseiro <strong>5</strong></p>
+            </article>
+            <article class="eng-item">
+              <h3>Diferencial M ativo</h3>
+              <p>Fica no eixo traseiro e trabalha em conjunto com o M xDrive e com o controle de estabilidade.</p>
+              <p class="eng-item__data">Bitola traseira <strong>1.605 mm</strong></p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Galeria horizontal -->
+        <section class="gallery" id="galeria" aria-labelledby="galleryTitle">
+          <div class="gallery__head">
+            <h2 id="galleryTitle">A volta, quadro a quadro</h2>
+            <p>Cinco momentos do passeio que você acabou de fazer.</p>
+          </div>
+          <div class="gallery__viewport">
+            <ol class="gallery__track" id="galleryTrack">
+              <li class="shot"><img src="assets/stills/traseira.jpg" alt="Traseira da M3 com as lanternas acesas" loading="lazy" width="1920" height="1080"><p>Saída pela traseira, com as lanternas acesas.</p></li>
+              <li class="shot"><img src="assets/stills/lateral.jpg" alt="Lateral da M3 mostrando as rodas pretas e pinças vermelhas" loading="lazy" width="1920" height="1080"><p>Lateral do motorista, rodas forjadas e pinças vermelhas.</p></li>
+              <li class="shot"><img src="assets/stills/frente.jpg" alt="Frente da M3 com a grade vertical e os faróis" loading="lazy" width="1920" height="1080"><p>A frente, com a grade vertical e os faróis de LED.</p></li>
+              <li class="shot"><img src="assets/stills/portas.jpg" alt="M3 com a porta do passageiro aberta mostrando o interior" loading="lazy" width="1920" height="1080"><p>Portas abertas e a entrada na cabine.</p></li>
+              <li class="shot"><img src="assets/stills/cockpit.jpg" alt="Painel da M3 visto do banco traseiro" loading="lazy" width="1920" height="1080"><p>O fim do passeio, de frente para o painel.</p></li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Cabine -->
+        <section class="split split--flip" id="cabine" aria-labelledby="cabinTitle">
+          <div class="split__text">
+            <h2 id="cabinTitle">Aqui dentro, tudo aponta para você</h2>
+            <p>Bancos esportivos M em couro Merino, volante M de três raios e o BMW Curved Display inclinado para o motorista, com BMW iDrive e Operating System 8.5.</p>
+            <dl class="facts">
+              <div><dt>Lugares</dt><dd>5</dd></div>
+              <div><dt>Porta-malas</dt><dd>480 l</dd></div>
+              <div><dt>Tanque</dt><dd>59 l</dd></div>
+            </dl>
+          </div>
+          <figure class="split__media reveal">
+            <img src="assets/stills/volante.jpg" alt="Volante da M3 com os botões vermelhos e o painel digital ao fundo" loading="lazy" width="1600" height="900">
+          </figure>
+        </section>
+
+        <!-- Versões: comparação com aceleração em barras -->
+        <section class="versions" id="versoes" aria-labelledby="versionsTitle">
+          <div class="versions__head">
+            <h2 id="versionsTitle">Três jeitos de ter uma M3</h2>
+            <p>A BMW divulga o sedan M3 em três configurações. A do filme é a mais rápida delas.</p>
+          </div>
+          <div class="versions__table" role="table" aria-label="Comparação das versões do BMW M3 Sedan">
+            <div class="versions__row versions__row--head" role="row">
+              <span role="columnheader">Versão</span>
+              <span role="columnheader">Potência</span>
+              <span role="columnheader">Câmbio e tração</span>
+              <span role="columnheader">0 a 100 km/h</span>
+            </div>
+            <div class="versions__row" role="row">
+              <span role="cell" class="versions__name">M3</span>
+              <span role="cell" data-label="Potência">480 cv / 550 Nm</span>
+              <span role="cell" data-label="Câmbio e tração">Manual de 6 marchas, traseira</span>
+              <span role="cell" class="versions__acc" data-label="0 a 100 km/h"><i style="--v: 4.2"></i><b>4,2 s</b></span>
+            </div>
+            <div class="versions__row" role="row">
+              <span role="cell" class="versions__name">M3 Competition</span>
+              <span role="cell" data-label="Potência">510 cv / 650 Nm</span>
+              <span role="cell" data-label="Câmbio e tração">M Steptronic de 8 marchas, traseira</span>
+              <span role="cell" class="versions__acc" data-label="0 a 100 km/h"><i style="--v: 3.9"></i><b>3,9 s</b></span>
+            </div>
+            <div class="versions__row is-featured" role="row">
+              <span role="cell" class="versions__name">M3 Competition M xDrive <em>no filme</em></span>
+              <span role="cell" data-label="Potência">530 cv / 650 Nm</span>
+              <span role="cell" data-label="Câmbio e tração">M Steptronic de 8 marchas, M xDrive</span>
+              <span role="cell" class="versions__acc" data-label="0 a 100 km/h"><i style="--v: 3.5"></i><b>3,5 s</b></span>
+            </div>
+          </div>
+          <p class="versions__note">A barra mais longa é a que chega primeiro aos 100 km/h. Velocidade máxima de 250 km/h nas três, limitada eletronicamente, ou 290 km/h com o M Driver's Package opcional.</p>
+        </section>
+
+        <!-- Ficha técnica em abas -->
+        <section class="specs" id="ficha" aria-labelledby="fichaTitle">
+          <div class="specs__head">
+            <h2 id="fichaTitle">Ficha técnica completa</h2>
+            <p class="specs__lead">BMW M3 Competition Sedan com M xDrive. Dados oficiais divulgados pela BMW.</p>
+          </div>
+
+          <div class="tabs">
+            <div class="tabs__list" role="tablist" aria-label="Grupos da ficha técnica">
+              <button role="tab" id="tab-motor" aria-controls="panel-motor" aria-selected="true">Motor</button>
+              <button role="tab" id="tab-desempenho" aria-controls="panel-desempenho" aria-selected="false" tabindex="-1">Desempenho</button>
+              <button role="tab" id="tab-transmissao" aria-controls="panel-transmissao" aria-selected="false" tabindex="-1">Transmissão e tração</button>
+              <button role="tab" id="tab-chassi" aria-controls="panel-chassi" aria-selected="false" tabindex="-1">Chassi, rodas e freios</button>
+              <button role="tab" id="tab-dimensoes" aria-controls="panel-dimensoes" aria-selected="false" tabindex="-1">Dimensões e pesos</button>
+              <button role="tab" id="tab-interior" aria-controls="panel-interior" aria-selected="false" tabindex="-1">Interior e tecnologia</button>
+            </div>
+
+            <div class="tabs__panels">
+              <dl class="tabs__panel" role="tabpanel" id="panel-motor" aria-labelledby="tab-motor" tabindex="0">
+                <div><dt>Configuração</dt><dd>6 cilindros em linha, 4 válvulas por cilindro</dd></div>
+                <div><dt>Cilindrada</dt><dd>2.993 cm³</dd></div>
+                <div><dt>Tecnologia</dt><dd>M TwinPower Turbo, dois turbos mono-scroll, VALVETRONIC e Double-VANOS</dd></div>
+                <div><dt>Potência</dt><dd>390 kW (530 cv) a 6.250 rpm</dd></div>
+                <div><dt>Torque</dt><dd>650 Nm entre 2.750 e 5.730 rpm</dd></div>
+                <div><dt>Taxa de compressão</dt><dd>9,3:1</dd></div>
+                <div><dt>Combustível</dt><dd>RON 98 (mín. RON 95)</dd></div>
+              </dl>
+              <dl class="tabs__panel" role="tabpanel" id="panel-desempenho" aria-labelledby="tab-desempenho" tabindex="0" hidden>
+                <div><dt>0–100 km/h</dt><dd>3,5 s</dd></div>
+                <div><dt>0–200 km/h</dt><dd>11,8 s</dd></div>
+                <div><dt>80–120 km/h (5ª marcha)</dt><dd>3,4 s</dd></div>
+                <div><dt>Velocidade máxima</dt><dd>250 km/h (limitada), ou 290 km/h com M Driver's Package</dd></div>
+                <div><dt>Relação peso/potência (DIN)</dt><dd>4,6 kg/kW</dd></div>
+                <div><dt>Potência específica</dt><dd>130,3 kW/l</dd></div>
+                <div><dt>Consumo combinado (WLTP)</dt><dd>10,2–10,1 l/100 km, CO₂ 230–227 g/km</dd></div>
+              </dl>
+              <dl class="tabs__panel" role="tabpanel" id="panel-transmissao" aria-labelledby="tab-transmissao" tabindex="0" hidden>
+                <div><dt>Câmbio</dt><dd>M Steptronic de 8 marchas com Drivelogic</dd></div>
+                <div><dt>Tração</dt><dd>M xDrive, com prioridade traseira</dd></div>
+                <div><dt>Modos</dt><dd>4WD, 4WD Sport e 2WD (com o DSC desligado)</dd></div>
+                <div><dt>Diferencial</dt><dd>Diferencial M ativo no eixo traseiro</dd></div>
+                <div><dt>Relação final</dt><dd>3,154:1</dd></div>
+              </dl>
+              <dl class="tabs__panel" role="tabpanel" id="panel-chassi" aria-labelledby="tab-chassi" tabindex="0" hidden>
+                <div><dt>Suspensão</dt><dd>M adaptativa, eixo dianteiro de alumínio e traseiro multibraço (5 braços)</dd></div>
+                <div><dt>Direção</dt><dd>Elétrica com Servotronic M e relação variável, 14,6:1</dd></div>
+                <div><dt>Rodas</dt><dd>Forjadas, 9,5J × 19" (diant.) e 10,5J × 20" (tras.)</dd></div>
+                <div><dt>Pneus</dt><dd>275/35 ZR19 (diant.) e 285/30 ZR20 (tras.)</dd></div>
+                <div><dt>Freios</dt><dd>M Compound ventilados: pinças fixas de 6 pistões na frente e flutuantes de 1 pistão atrás</dd></div>
+                <div><dt>Opcional</dt><dd>Freios M Carbon-cerâmicos, cerca de 14 kg mais leves</dd></div>
+              </dl>
+              <dl class="tabs__panel" role="tabpanel" id="panel-dimensoes" aria-labelledby="tab-dimensoes" tabindex="0" hidden>
+                <div><dt>Comprimento × largura × altura</dt><dd>4.794 × 1.903 × 1.438 mm</dd></div>
+                <div><dt>Entre-eixos</dt><dd>2.857 mm</dd></div>
+                <div><dt>Bitola diant./tras.</dt><dd>1.617 / 1.605 mm</dd></div>
+                <div><dt>Altura livre do solo</dt><dd>122 mm</dd></div>
+                <div><dt>Diâmetro de giro</dt><dd>12,6 m</dd></div>
+                <div><dt>Peso em ordem de marcha (DIN / UE)</dt><dd>1.780 / 1.855 kg</dd></div>
+                <div><dt>Porta-malas</dt><dd>480 litros</dd></div>
+                <div><dt>Tanque</dt><dd>aprox. 59 litros</dd></div>
+                <div><dt>Aerodinâmica (Cx × A)</dt><dd>0,34 × 2,34 m²</dd></div>
+              </dl>
+              <dl class="tabs__panel" role="tabpanel" id="panel-interior" aria-labelledby="tab-interior" tabindex="0" hidden>
+                <div><dt>Lugares</dt><dd>4 portas, 5 lugares</dd></div>
+                <div><dt>Bancos</dt><dd>Esportivos M em couro Merino (de série); M Carbon bucket opcionais, 9,6 kg mais leves</dd></div>
+                <div><dt>Volante</dt><dd>M em couro, 3 raios, base reta; aletas em fibra de carbono (CFRP)</dd></div>
+                <div><dt>Multimídia</dt><dd>BMW Curved Display com BMW iDrive e BMW Operating System 8.5</dd></div>
+                <div><dt>Faróis</dt><dd>LED redesenhados; opcional: LED adaptativos com farol alto matricial antiofuscante</dd></div>
+                <div><dt>Head-Up Display</dt><dd>Opcional</dd></div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <!-- Encerramento -->
+        <section class="closing" aria-labelledby="closingTitle">
+          <img class="closing__bg" src="assets/stills/cockpit.jpg" alt="" loading="lazy" width="1920" height="1080">
+          <div class="closing__content">
+            <h2 id="closingTitle">Quer dar outra volta?</h2>
+            <a class="btn" href="#top" data-scroll-to="#top">
+              Voltar ao começo
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+            </a>
+          </div>
+        </section>
+
+        <footer class="sources">
+          <p><strong>Fontes oficiais:</strong>
+            <a href="https://newsroom.bmwgroup.com/emea/en-ae/the-new-bmw-m3-sedan-en-ae_20260909133622724" target="_blank" rel="noopener">BMW Group PressClub, “The new BMW M3 Sedan” (29/05/2024)</a> e
+            <a href="https://newsroom.bmwgroup.com/emea/download/edf7630b-3b8d-4aa1-8a38-ee22d1cf09eb/20260909133618243-759.pdf" target="_blank" rel="noopener">especificações técnicas BMW M3 Sedan (05/2024, PDF)</a>.
+          </p>
+          <p>Dados divulgados pela BMW para os mercados europeus (ACEA), com pesos homologados na Alemanha. A própria BMW os chama de provisórios, e eles podem mudar conforme o mercado e os opcionais. Página de apresentação independente, sem vínculo oficial com a BMW. BMW e o logotipo BMW são marcas registradas da BMW AG.</p>
+        </footer>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- GSAP 3.13.0 salvo localmente: a página abre direto do arquivo, mesmo offline -->
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/ScrollSmoother.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
