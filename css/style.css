@@ -83,6 +83,8 @@ img { display: block; max-width: 100%; }
 .topbar.is-light { color: #0c0e0d; }
 .topbar.is-light .topbar__link { color: #3c4441; }
 .topbar.is-light::before { opacity: 0; }
+.topbar.is-solid::before { inset: 0; background: rgba(12, 14, 13, .9); border-bottom: 1px solid var(--hair); opacity: 1; }
+.topbar.is-solid.is-light::before { background: rgba(233, 236, 234, .92); border-bottom-color: rgba(12, 14, 13, .08); }
 .topbar.is-light .logo-on-light { opacity: 1; }
 .topbar.is-light .logo-on-dark { opacity: 0; }
 .topbar__link {
@@ -97,7 +99,7 @@ img { display: block; max-width: 100%; }
 .zoom { position: absolute; inset: 0; will-change: transform; }
 .stage__frame { position: absolute; inset: 0; overflow: hidden; }
 .stage__media { position: absolute; inset: 0; overflow: hidden; background: #000; }
-.stage__media video { position: absolute; top: 0; left: 0; display: block; will-change: transform; }
+.stage__media video { position: absolute; top: 0; left: 0; display: block; width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 .stage__still { position: absolute; top: 0; left: 0; max-width: none; visibility: hidden; }
 .stage__shade {
   position: absolute; inset: 0; pointer-events: none;
@@ -343,7 +345,7 @@ img { display: block; max-width: 100%; }
 }
 .tabs__list button:hover { color: var(--fog); }
 .tabs__list button[aria-selected="true"] { color: var(--fog); border-left-color: var(--fog); }
-.tabs__panel { margin: 0; }
+.tabs__panel, .tabs__panel dl { margin: 0; }
 .tabs__panel div { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
 .tabs__panel div:first-child { border-top: 1px solid var(--hair); }
 .tabs__panel dt { font-size: 14px; color: var(--steel); }
@@ -351,7 +353,7 @@ img { display: block; max-width: 100%; }
 
 /* Encerramento: abre pela fenda */
 .closing__pin { position: relative; height: 100vh; height: 100svh; overflow: hidden; display: grid; place-items: center; }
-.closing__media { position: absolute; inset: 0; clip-path: inset(49.6% 0 49.6% 0); will-change: clip-path; }
+.closing__media { position: absolute; inset: 0; clip-path: inset(50% 0 50% 0); will-change: clip-path; }
 .closing__bg { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 .closing__media::after { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 70% at 50% 55%, rgba(6, 8, 7, .25), rgba(6, 8, 7, .7)); }
 .closing__content { position: relative; z-index: 1; text-align: center; display: grid; justify-items: center; gap: 28px; padding: 40px var(--gutter); }

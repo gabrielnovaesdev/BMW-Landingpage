@@ -10,7 +10,7 @@
 
 <br>
 
-<img src="assets/poster.jpg" alt="BMW M3 Competition verde em um estacionamento ao entardecer" width="100%">
+<img src="assets/poster.webp" alt="BMW M3 Competition verde em um estacionamento ao entardecer" width="100%">
 
 </div>
 
@@ -22,14 +22,14 @@ A primeira parte da página é um filme de 15 segundos preso na tela. A rolagem 
 
 <table>
   <tr>
-    <td width="33%"><img src="assets/photos/lanterna-960.jpg" alt="Lanternas traseiras"><br><sub><b>01 · Lanternas</b><br>Olha essa assinatura</sub></td>
-    <td width="33%"><img src="assets/photos/roda-960.jpg" alt="Roda e freio"><br><sub><b>02 · Rodas e freios</b><br>Para parar tão bem quanto anda</sub></td>
-    <td width="33%"><img src="assets/photos/grade-960.jpg" alt="Frente com grade vertical e faróis"><br><sub><b>03 · Faróis</b><br>Cara de poucos amigos</sub></td>
+    <td width="33%"><img src="assets/photos/lanterna-960.webp" alt="Lanternas traseiras"><br><sub><b>01 · Lanternas</b><br>Olha essa assinatura</sub></td>
+    <td width="33%"><img src="assets/photos/roda-960.webp" alt="Roda e freio"><br><sub><b>02 · Rodas e freios</b><br>Para parar tão bem quanto anda</sub></td>
+    <td width="33%"><img src="assets/photos/grade-960.webp" alt="Frente com grade vertical e faróis"><br><sub><b>03 · Faróis</b><br>Cara de poucos amigos</sub></td>
   </tr>
   <tr>
-    <td><img src="assets/photos/bancos-960.jpg" alt="Bancos"><br><sub><b>04 · Bancos e acabamento</b><br>Sentou, encaixou</sub></td>
-    <td><img src="assets/photos/volante-960.jpg" alt="Volante"><br><sub><b>05 · Volante</b><br>Tudo na sua mão</sub></td>
-    <td><img src="assets/photos/cabine-960.jpg" alt="Painel e multimídia"><br><sub><b>06 · Multimídia</b><br>Uma tela só, do painel ao centro</sub></td>
+    <td><img src="assets/photos/bancos-960.webp" alt="Bancos"><br><sub><b>04 · Bancos e acabamento</b><br>Sentou, encaixou</sub></td>
+    <td><img src="assets/photos/volante-960.webp" alt="Volante"><br><sub><b>05 · Volante</b><br>Tudo na sua mão</sub></td>
+    <td><img src="assets/photos/cabine-960.webp" alt="Painel e multimídia"><br><sub><b>06 · Multimídia</b><br>Uma tela só, do painel ao centro</sub></td>
   </tr>
 </table>
 
@@ -51,7 +51,7 @@ A primeira parte da página é um filme de 15 segundos preso na tela. A rolagem 
 
 ## Como funciona
 
-**Vídeo que responde à rolagem sem travar.** O filme foi reamostrado para 60 quadros por segundo com interpolação de movimento e codificado em H.264 *all-intra* (todo quadro é um quadro-chave). Assim o navegador decodifica qualquer quadro sozinho, nos dois sentidos, sem precisar voltar ao quadro-chave anterior.
+**Vídeo que responde à rolagem sem travar.** O filme foi reamostrado para 60 quadros por segundo com interpolação de movimento e codificado em H.264 com um quadro-chave a cada 4 quadros e sem quadros B. Assim qualquer quadro é decodificado em cerca de 10 ms, nos dois sentidos. O celular recebe uma versão 720p (12 MB) e telas maiores, 1080p (25 MB).
 
 **Busca guiada por eventos.** O script só pede o próximo quadro quando o anterior termina de carregar (`seeked`), e o tempo mostrado segue a rolagem com amortecimento. Nada de fila de buscas acumuladas.
 
@@ -75,10 +75,11 @@ A primeira parte da página é um filme de 15 segundos preso na tela. A rolagem 
 │   ├── main.js          # entrada, passeio, pontos, cartões e seções
 │   └── vendor/          # GSAP, ScrollTrigger, ScrollSmoother
 ├── assets/
-│   ├── m3-60.mp4        # filme 1080p, 60 fps, all-intra
-│   ├── poster.jpg
-│   ├── last-frame.jpg   # último quadro, usado no recuo da câmera
-│   ├── photos/          # fotos oficiais da BMW (1920 px e 960 px)
+│   ├── m3-1080.mp4      # filme 1080p, 60 fps (telas grandes)
+│   ├── m3-720.mp4       # filme 720p, 60 fps (celular)
+│   ├── poster.webp
+│   ├── last-frame.webp  # último quadro, usado no recuo da câmera
+│   ├── photos/          # fotos oficiais da BMW em WebP (1920 px e 960 px)
 │   └── brand/           # logotipo BMW
 └── serve.py             # servidor local com suporte a Range
 ```

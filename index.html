@@ -6,10 +6,24 @@
   <title>BMW M3 Competition — Por dentro e por fora</title>
   <meta name="description" content="Uma volta completa pela BMW M3 Competition Sedan com M xDrive, guiada pela rolagem.">
   <meta name="theme-color" content="#0c0e0d">
+  <link rel="canonical" href="https://gabrielnovaesdev.github.io/BMW-Landingpage/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="BMW M3 Competition">
+  <meta property="og:title" content="BMW M3 Competition — Por dentro e por fora">
+  <meta property="og:description" content="Uma volta completa pela BMW M3 Competition Sedan com M xDrive, guiada pela rolagem.">
+  <meta property="og:url" content="https://gabrielnovaesdev.github.io/BMW-Landingpage/">
+  <meta property="og:image" content="https://gabrielnovaesdev.github.io/BMW-Landingpage/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BMW M3 Competition verde estacionada ao entardecer">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap"></noscript>
   <link rel="icon" href="assets/brand/bmw-logo-light.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/poster.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="is-loading">
@@ -43,23 +57,23 @@
         <div class="zoom" id="zoom">
           <div class="stage__frame" id="frame">
             <div class="stage__media" id="media">
-              <video id="film" src="assets/m3-60.mp4" poster="assets/poster.jpg"
+              <video id="film" data-src-sm="assets/m3-720.mp4" data-src-lg="assets/m3-1080.mp4" poster="assets/poster.webp"
                      muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
-              <img class="stage__still" id="still" src="assets/last-frame.jpg" alt="" aria-hidden="true">
+              <img class="stage__still" id="still" src="assets/last-frame.webp" alt="" aria-hidden="true">
             </div>
             <div class="stage__shade" aria-hidden="true"></div>
             <div class="veil" id="veil" aria-hidden="true"></div>
           </div>
           <!-- Mosaico: ao fim do passeio a câmera recua e o filme vira o centro de uma folha de fotos -->
           <div class="mosaic" id="mosaic" aria-hidden="true">
-            <img data-cell="-1,-1" src="assets/photos/estrada-frente-960.jpg" alt="">
-            <img data-cell="0,-1" src="assets/photos/grade-960.jpg" alt="">
-            <img data-cell="1,-1" src="assets/photos/floresta-960.jpg" alt="">
-            <img data-cell="-1,0" src="assets/photos/estudio-perfil-960.jpg" alt="">
-            <img data-cell="1,0" src="assets/photos/estudio-traseira-34-960.jpg" alt="">
-            <img data-cell="-1,1" src="assets/photos/cabine-960.jpg" alt="">
-            <img data-cell="0,1" src="assets/photos/estrada-traseira-960.jpg" alt="">
-            <img data-cell="1,1" src="assets/photos/estudio-frente-960.jpg" alt="">
+            <img data-cell="-1,-1" src="assets/photos/estrada-frente-960.webp" alt="">
+            <img data-cell="0,-1" src="assets/photos/grade-960.webp" alt="">
+            <img data-cell="1,-1" src="assets/photos/floresta-960.webp" alt="">
+            <img data-cell="-1,0" src="assets/photos/estudio-perfil-960.webp" alt="">
+            <img data-cell="1,0" src="assets/photos/estudio-traseira-34-960.webp" alt="">
+            <img data-cell="-1,1" src="assets/photos/cabine-960.webp" alt="">
+            <img data-cell="0,1" src="assets/photos/estrada-traseira-960.webp" alt="">
+            <img data-cell="1,1" src="assets/photos/estudio-frente-960.webp" alt="">
           </div>
         </div>
 
@@ -95,7 +109,7 @@
 
         <!-- Manifesto: as palavras acendem e as fotos se abrem entre elas -->
         <section class="manifesto" aria-label="Apresentação">
-          <p class="manifesto__text" id="manifesto">Seis cilindros em linha <span class="chip"><img src="assets/photos/capo-960.jpg" alt=""></span> tração integral com prioridade traseira <span class="chip"><img src="assets/photos/roda-960.jpg" alt=""></span> e uma cabine que olha para quem dirige <span class="chip"><img src="assets/photos/cabine-960.jpg" alt=""></span> Um sedan de quatro portas que não esconde de onde veio.</p>
+          <p class="manifesto__text" id="manifesto">Seis cilindros em linha <span class="chip"><img src="assets/photos/capo-320.webp" alt="" width="320" height="427"></span> tração integral com prioridade traseira <span class="chip"><img src="assets/photos/roda-320.webp" alt="" width="320" height="427"></span> e uma cabine que olha para quem dirige <span class="chip"><img src="assets/photos/cabine-320.webp" alt="" width="320" height="240"></span> Um sedan de quatro portas que não esconde de onde veio.</p>
         </section>
 
         <!-- Desenho: a câmera se aproxima até a foto ocupar a tela -->
@@ -106,7 +120,7 @@
               <p>Grade vertical, para-lamas largos e rodas de medidas diferentes na frente e atrás. A M3 Competition mostra o que é antes mesmo de ligar o motor.</p>
             </div>
             <figure class="dolly__frame">
-              <img src="assets/photos/estudio-tres-quartos.jpg" alt="BMW M3 Competition verde em estúdio, vista em três quartos pela frente" loading="lazy" width="1920" height="1440">
+              <img src="assets/photos/estudio-tres-quartos.webp" srcset="assets/photos/estudio-tres-quartos-960.webp 960w, assets/photos/estudio-tres-quartos.webp 1920w" sizes="100vw" alt="BMW M3 Competition verde em estúdio, vista em três quartos pela frente" loading="lazy" width="1920" height="1440">
             </figure>
             <dl class="dolly__facts">
               <div><dt>Comprimento</dt><dd>4.794 mm</dd></div>
@@ -121,10 +135,10 @@
         <section class="engineering" id="engenharia" aria-labelledby="engTitle">
           <div class="engineering__media" aria-hidden="true">
             <div class="engineering__frame">
-              <img src="assets/photos/floresta.jpg" alt="" class="is-active" loading="lazy" width="1920" height="1280">
-              <img src="assets/photos/roda.jpg" alt="" loading="lazy" width="1920" height="2560">
-              <img src="assets/photos/curva-traseira.jpg" alt="" loading="lazy" width="1920" height="1280">
-              <img src="assets/photos/estudio-traseira.jpg" alt="" loading="lazy" width="1920" height="1440">
+              <img src="assets/photos/floresta.webp" srcset="assets/photos/floresta-960.webp 960w, assets/photos/floresta.webp 1920w" sizes="(max-width: 860px) 100vw, 56vw" alt="" class="is-active" loading="lazy" width="1920" height="1280">
+              <img src="assets/photos/roda.webp" srcset="assets/photos/roda-960.webp 960w, assets/photos/roda.webp 1920w" sizes="(max-width: 860px) 100vw, 56vw" alt="" loading="lazy" width="1920" height="2560">
+              <img src="assets/photos/curva-traseira.webp" srcset="assets/photos/curva-traseira-960.webp 960w, assets/photos/curva-traseira.webp 1920w" sizes="100vw" alt="" loading="lazy" width="1920" height="1280">
+              <img src="assets/photos/estudio-traseira.webp" srcset="assets/photos/estudio-traseira-960.webp 960w, assets/photos/estudio-traseira.webp 1920w" sizes="(max-width: 860px) 100vw, 56vw" alt="" loading="lazy" width="1920" height="1440">
               <p class="engineering__count"><span class="engineering__num"><span id="engNum"><b>01</b><b>02</b><b>03</b><b>04</b></span></span><small>/ 04</small></p>
             </div>
             <ol class="engineering__steps"><li></li><li></li><li></li><li></li></ol>
@@ -162,13 +176,13 @@
               <p class="tunnel__caption"><span class="tunnel__index" id="tunnelIndex">01</span><span id="tunnelText">Na estrada, de frente.</span></p>
             </div>
             <ol class="tunnel__space" id="tunnelSpace">
-              <li data-x="-24" data-y="-4" data-cap="Na estrada, de frente."><img src="assets/photos/estrada-frente-960.jpg" alt="M3 verde vindo de frente numa estrada" loading="lazy" width="960" height="640"></li>
-              <li data-x="22" data-y="8" data-cap="A grade vertical, de perto."><img src="assets/photos/grade-960.jpg" alt="Detalhe da grade dupla vertical com o emblema M3" loading="lazy" width="960" height="720"></li>
-              <li data-x="-18" data-y="10" data-cap="Lanterna e o defletor na tampa." class="is-tall"><img src="assets/photos/lanterna-960.jpg" alt="Detalhe da lanterna traseira e da tampa do porta-malas" loading="lazy" width="960" height="1280"></li>
-              <li data-x="24" data-y="-8" data-cap="Perfil baixo, entre-eixos longo."><img src="assets/photos/estudio-perfil-960.jpg" alt="M3 verde de perfil em estúdio branco" loading="lazy" width="960" height="720"></li>
-              <li data-x="-22" data-y="-6" data-cap="As nervuras do capô." class="is-tall"><img src="assets/photos/vinco-960.jpg" alt="Detalhe do capô verde com nervuras" loading="lazy" width="960" height="1280"></li>
-              <li data-x="20" data-y="6" data-cap="Câmbio M e console em carbono."><img src="assets/photos/cambio-960.jpg" alt="Alavanca do câmbio M Steptronic no console" loading="lazy" width="960" height="720"></li>
-              <li data-x="0" data-y="0" data-cap="E lá vai ela."><img src="assets/photos/estrada-ceu-960.jpg" alt="M3 verde se afastando numa estrada sob céu azul" loading="lazy" width="960" height="640"></li>
+              <li data-x="-24" data-y="-4" data-cap="Na estrada, de frente."><img src="assets/photos/estrada-frente-960.webp" alt="M3 verde vindo de frente numa estrada" loading="lazy" width="960" height="640"></li>
+              <li data-x="22" data-y="8" data-cap="A grade vertical, de perto."><img src="assets/photos/grade-960.webp" alt="Detalhe da grade dupla vertical com o emblema M3" loading="lazy" width="960" height="720"></li>
+              <li data-x="-18" data-y="10" data-cap="Lanterna e o defletor na tampa." class="is-tall"><img src="assets/photos/lanterna-960.webp" alt="Detalhe da lanterna traseira e da tampa do porta-malas" loading="lazy" width="960" height="1280"></li>
+              <li data-x="24" data-y="-8" data-cap="Perfil baixo, entre-eixos longo."><img src="assets/photos/estudio-perfil-960.webp" alt="M3 verde de perfil em estúdio branco" loading="lazy" width="960" height="720"></li>
+              <li data-x="-22" data-y="-6" data-cap="As nervuras do capô." class="is-tall"><img src="assets/photos/vinco-960.webp" alt="Detalhe do capô verde com nervuras" loading="lazy" width="960" height="1280"></li>
+              <li data-x="20" data-y="6" data-cap="Câmbio M e console em carbono."><img src="assets/photos/cambio-960.webp" alt="Alavanca do câmbio M Steptronic no console" loading="lazy" width="960" height="720"></li>
+              <li data-x="0" data-y="0" data-cap="E lá vai ela."><img src="assets/photos/estrada-ceu-960.webp" alt="M3 verde se afastando numa estrada sob céu azul" loading="lazy" width="960" height="640"></li>
             </ol>
           </div>
         </section>
@@ -184,8 +198,8 @@
               <div><dt>Tanque</dt><dd>59 l</dd></div>
             </dl>
           </div>
-          <figure class="cabin__main"><img src="assets/photos/cabine.jpg" alt="Interior da M3 com volante M, Curved Display e bancos esportivos" loading="lazy" width="1920" height="1440"></figure>
-          <figure class="cabin__side"><img src="assets/photos/volante-960.jpg" alt="Volante M com os botões vermelhos M1 e M2" loading="lazy" width="960" height="1280"></figure>
+          <figure class="cabin__main"><img src="assets/photos/cabine.webp" srcset="assets/photos/cabine-960.webp 960w, assets/photos/cabine.webp 1920w" sizes="(max-width: 860px) 50vw, 34vw" alt="Interior da M3 com volante M, Curved Display e bancos esportivos" loading="lazy" width="1920" height="1440"></figure>
+          <figure class="cabin__side"><img src="assets/photos/volante-960.webp" alt="Volante M com os botões vermelhos M1 e M2" loading="lazy" width="960" height="1280"></figure>
         </section>
 
         <!-- Versões: comparação com aceleração em barras -->
@@ -241,7 +255,7 @@
             </div>
 
             <div class="tabs__panels">
-              <dl class="tabs__panel" role="tabpanel" id="panel-motor" aria-labelledby="tab-motor" tabindex="0">
+              <div class="tabs__panel" role="tabpanel" id="panel-motor" aria-labelledby="tab-motor" tabindex="0"><dl>
                 <div><dt>Configuração</dt><dd>6 cilindros em linha, 4 válvulas por cilindro</dd></div>
                 <div><dt>Cilindrada</dt><dd>2.993 cm³</dd></div>
                 <div><dt>Tecnologia</dt><dd>M TwinPower Turbo, dois turbos mono-scroll, VALVETRONIC e Double-VANOS</dd></div>
@@ -249,8 +263,8 @@
                 <div><dt>Torque</dt><dd>650 Nm entre 2.750 e 5.730 rpm</dd></div>
                 <div><dt>Taxa de compressão</dt><dd>9,3:1</dd></div>
                 <div><dt>Combustível</dt><dd>RON 98 (mín. RON 95)</dd></div>
-              </dl>
-              <dl class="tabs__panel" role="tabpanel" id="panel-desempenho" aria-labelledby="tab-desempenho" tabindex="0" hidden>
+              </dl></div>
+              <div class="tabs__panel" role="tabpanel" id="panel-desempenho" aria-labelledby="tab-desempenho" tabindex="0" hidden><dl>
                 <div><dt>0–100 km/h</dt><dd>3,5 s</dd></div>
                 <div><dt>0–200 km/h</dt><dd>11,8 s</dd></div>
                 <div><dt>80–120 km/h (5ª marcha)</dt><dd>3,4 s</dd></div>
@@ -258,23 +272,23 @@
                 <div><dt>Relação peso/potência (DIN)</dt><dd>4,6 kg/kW</dd></div>
                 <div><dt>Potência específica</dt><dd>130,3 kW/l</dd></div>
                 <div><dt>Consumo combinado (WLTP)</dt><dd>10,2–10,1 l/100 km, CO₂ 230–227 g/km</dd></div>
-              </dl>
-              <dl class="tabs__panel" role="tabpanel" id="panel-transmissao" aria-labelledby="tab-transmissao" tabindex="0" hidden>
+              </dl></div>
+              <div class="tabs__panel" role="tabpanel" id="panel-transmissao" aria-labelledby="tab-transmissao" tabindex="0" hidden><dl>
                 <div><dt>Câmbio</dt><dd>M Steptronic de 8 marchas com Drivelogic</dd></div>
                 <div><dt>Tração</dt><dd>M xDrive, com prioridade traseira</dd></div>
                 <div><dt>Modos</dt><dd>4WD, 4WD Sport e 2WD (com o DSC desligado)</dd></div>
                 <div><dt>Diferencial</dt><dd>Diferencial M ativo no eixo traseiro</dd></div>
                 <div><dt>Relação final</dt><dd>3,154:1</dd></div>
-              </dl>
-              <dl class="tabs__panel" role="tabpanel" id="panel-chassi" aria-labelledby="tab-chassi" tabindex="0" hidden>
+              </dl></div>
+              <div class="tabs__panel" role="tabpanel" id="panel-chassi" aria-labelledby="tab-chassi" tabindex="0" hidden><dl>
                 <div><dt>Suspensão</dt><dd>M adaptativa, eixo dianteiro de alumínio e traseiro multibraço (5 braços)</dd></div>
                 <div><dt>Direção</dt><dd>Elétrica com Servotronic M e relação variável, 14,6:1</dd></div>
                 <div><dt>Rodas</dt><dd>Forjadas, 9,5J × 19" (diant.) e 10,5J × 20" (tras.)</dd></div>
                 <div><dt>Pneus</dt><dd>275/35 ZR19 (diant.) e 285/30 ZR20 (tras.)</dd></div>
                 <div><dt>Freios</dt><dd>M Compound ventilados: pinças fixas de 6 pistões na frente e flutuantes de 1 pistão atrás</dd></div>
                 <div><dt>Opcional</dt><dd>Freios M Carbon-cerâmicos, cerca de 14 kg mais leves</dd></div>
-              </dl>
-              <dl class="tabs__panel" role="tabpanel" id="panel-dimensoes" aria-labelledby="tab-dimensoes" tabindex="0" hidden>
+              </dl></div>
+              <div class="tabs__panel" role="tabpanel" id="panel-dimensoes" aria-labelledby="tab-dimensoes" tabindex="0" hidden><dl>
                 <div><dt>Comprimento × largura × altura</dt><dd>4.794 × 1.903 × 1.438 mm</dd></div>
                 <div><dt>Entre-eixos</dt><dd>2.857 mm</dd></div>
                 <div><dt>Bitola diant./tras.</dt><dd>1.617 / 1.605 mm</dd></div>
@@ -284,15 +298,15 @@
                 <div><dt>Porta-malas</dt><dd>480 litros</dd></div>
                 <div><dt>Tanque</dt><dd>aprox. 59 litros</dd></div>
                 <div><dt>Aerodinâmica (Cx × A)</dt><dd>0,34 × 2,34 m²</dd></div>
-              </dl>
-              <dl class="tabs__panel" role="tabpanel" id="panel-interior" aria-labelledby="tab-interior" tabindex="0" hidden>
+              </dl></div>
+              <div class="tabs__panel" role="tabpanel" id="panel-interior" aria-labelledby="tab-interior" tabindex="0" hidden><dl>
                 <div><dt>Lugares</dt><dd>4 portas, 5 lugares</dd></div>
                 <div><dt>Bancos</dt><dd>Esportivos M em couro Merino (de série); M Carbon bucket opcionais, 9,6 kg mais leves</dd></div>
                 <div><dt>Volante</dt><dd>M em couro, 3 raios, base reta; aletas em fibra de carbono (CFRP)</dd></div>
                 <div><dt>Multimídia</dt><dd>BMW Curved Display com BMW iDrive e BMW Operating System 8.5</dd></div>
                 <div><dt>Faróis</dt><dd>LED redesenhados; opcional: LED adaptativos com farol alto matricial antiofuscante</dd></div>
                 <div><dt>Head-Up Display</dt><dd>Opcional</dd></div>
-              </dl>
+              </dl></div>
             </div>
           </div>
         </section>
@@ -300,7 +314,7 @@
         <!-- Encerramento: a foto abre pela mesma fenda da entrada -->
         <section class="closing" aria-labelledby="closingTitle">
           <div class="closing__pin">
-            <div class="closing__media"><img class="closing__bg" src="assets/photos/curva-traseira.jpg" alt="" loading="lazy" width="1920" height="1280"></div>
+            <div class="closing__media"><img class="closing__bg" src="assets/photos/curva-traseira.webp" srcset="assets/photos/curva-traseira-960.webp 960w, assets/photos/curva-traseira.webp 1920w" sizes="100vw" alt="" loading="lazy" width="1920" height="1280"></div>
             <div class="closing__content">
               <h2 id="closingTitle">Quer dar outra volta?</h2>
               <a class="btn" href="#top" data-scroll-to="#top">

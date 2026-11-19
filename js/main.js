@@ -126,6 +126,9 @@
   // ---------------------------------------------------------------------------
   const stage = document.querySelector(".stage");
   const video = document.getElementById("film");
+  // Celular recebe 720p (12 MB); telas maiores, 1080p (25 MB). Os dois têm quadro-chave a cada 4 quadros.
+  const smallScreen = Math.min(screen.width, screen.height) < 700;
+  video.src = video.dataset[smallScreen ? "srcSm" : "srcLg"];
   const svg = document.getElementById("lines");
   const dotsLayer = document.getElementById("dots");
   const cardsLayer = document.getElementById("cards");
@@ -334,6 +337,8 @@
   });
 
   function render() {
+    // depois do passeio (já fora da tela) o filme não precisa ser redesenhado
+    if (ready && st && window.scrollY > st.end + view.H * 1.5) { lastTick = performance.now(); return; }
     const now = performance.now();
     const dt = Math.min(0.1, (now - lastTick) / 1000);
     lastTick = now;
@@ -533,6 +538,8 @@
   const light = { "--light": 1, "--ink": "#0c0e0d", "--ink-2": "#4b5450", "--ink-hair": "rgba(12,14,13,0.16)" };
   gsap.set(cabin, dark);
   const topbar = document.getElementById("topbar");
+  // Depois do passeio o cabeçalho ganha fundo próprio, para não sobrepor o texto das seções.
+  ScrollTrigger.create({ trigger: ".landing", start: "top 60px", end: "max", toggleClass: { targets: topbar, className: "is-solid" } });
   ScrollTrigger.create({ trigger: cabin, start: "top 35%", end: "bottom 65%", toggleClass: { targets: topbar, className: "is-light" } });
   gsap.timeline({ scrollTrigger: { trigger: cabin, start: "top 70%", end: "bottom 30%", scrub: true } })
     .to(cabin, { ...light, duration: 0.18, ease: "power1.inOut" }, 0)
@@ -547,11 +554,14 @@
     scrollTrigger: { trigger: ".versions__table", start: "top 80%", once: true, onEnter: () => document.querySelector(".versions").classList.add("is-in") }
   });
 
-  // Encerramento: a foto abre pela mesma fenda da entrada
-  gsap.timeline({ scrollTrigger: { trigger: ".closing", start: "top top", end: "+=110%", pin: true, scrub: true } })
-    .fromTo(".closing__media", { clipPath: "inset(49.6% 0% 49.6% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: "expo.inOut" }, 0)
-    .fromTo(".closing__bg", { scale: 1.3 }, { scale: 1, duration: 1.2, ease: "power2.out" }, 0)
-    .fromTo(".closing__content > *", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, stagger: 0.1, ease: "power2.out" }, 0.8);
+  // Encerramento: a foto abre a partir do centro enquanto a seção sobe (sem fenda à mostra antes),
+  // e o texto entra com a seção presa.
+  gsap.timeline({ scrollTrigger: { trigger: ".closing", start: "top 85%", end: "top top", scrub: true } })
+    .fromTo(".closing__media", { clipPath: "inset(50% 0% 50% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: "power2.inOut" }, 0)
+    .fromTo(".closing__bg", { scale: 1.3 }, { scale: 1.06, duration: 1, ease: "none" }, 0);
+  gsap.timeline({ scrollTrigger: { trigger: ".closing", start: "top top", end: "+=60%", pin: true, scrub: true } })
+    .to(".closing__bg", { scale: 1, duration: 1, ease: "none" }, 0)
+.fromTo(".closing__content > *", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.15, ease: "power2.out" }, 0);
 
   // Abas da ficha técnica  // Abas da ficha técnica (teclado: setas, Home, End)
   const tabs = [...document.querySelectorAll('[role="tab"]')];
@@ -576,7 +586,8 @@
   });
 
   // fontes e imagens podem mudar alturas depois do primeiro cálculo
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+  // se a fonte chegar depois da abertura, recalcula as posições uma vez
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (ready) ScrollTrigger.refresh(); });
 
   window.__m3 = { go: t => goToTimeline(T(t)), T, tl, st, smoother, HOTSPOTS, sample, toScreen, targetPan, view, VIDEO_END_T, TOTAL };
 
