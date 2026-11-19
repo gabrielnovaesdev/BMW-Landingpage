@@ -14,38 +14,23 @@
 </head>
 <body class="is-loading">
 
-  <!-- ===== Entrada: conta-giros de carregamento + janela que abre para o filme ===== -->
+  <!-- ===== Entrada: nome em foco, linha de carregamento que vira fenda e abre para o filme ===== -->
   <div class="loader" id="loader" role="status" aria-label="Carregando o passeio">
-    <div class="loader__bars" aria-hidden="true">
-      <i class="loader__bar loader__bar--top"></i>
-      <i class="loader__bar loader__bar--bottom"></i>
-      <i class="loader__bar loader__bar--left"></i>
-      <i class="loader__bar loader__bar--right"></i>
+    <i class="loader__panel loader__panel--top" aria-hidden="true"></i>
+    <i class="loader__panel loader__panel--bottom" aria-hidden="true"></i>
+    <div class="loader__ui" aria-hidden="true">
+      <img class="loader__logo" src="assets/brand/bmw-logo-light.svg" alt="" width="40" height="40">
+      <p class="loader__word" id="loaderWord">M3 Competition</p>
     </div>
-
-    <div class="loader__ui" id="loaderUI">
-      <img class="loader__logo" src="assets/brand/bmw-logo-light.svg" alt="BMW" width="56" height="56">
-      <svg class="tach" id="tach" viewBox="0 0 240 150" aria-hidden="true">
-        <g id="tachTicks"></g>
-        <path class="tach__track" id="tachTrack" d="" />
-        <path class="tach__fill" id="tachFill" d="" />
-        <g class="tach__needle" id="tachNeedle"><line x1="120" y1="120" x2="120" y2="38" /><circle cx="120" cy="120" r="4" /></g>
-      </svg>
-      <p class="loader__count" aria-hidden="true"><span id="loaderCount">000</span><small>%</small></p>
-      <p class="loader__unit" aria-hidden="true">Carregando o passeio</p>
-    </div>
-
-    <dl class="loader__meta loader__meta--tl" aria-hidden="true"><dt>Modelo</dt><dd>BMW M3 Competition Sedan</dd></dl>
-    <dl class="loader__meta loader__meta--tr" aria-hidden="true"><dt>Tração</dt><dd>M xDrive</dd></dl>
-    <dl class="loader__meta loader__meta--bl" aria-hidden="true"><dt>Motor</dt><dd>3.0 M TwinPower Turbo, 6 cilindros</dd></dl>
-    <dl class="loader__meta loader__meta--br" aria-hidden="true"><dt>Potência</dt><dd>390 kW / 530 cv</dd></dl>
+    <i class="loader__seam" id="loaderSeam" aria-hidden="true"></i>
   </div>
 
   <!-- ===== Header ===== -->
   <header class="topbar" id="topbar">
     <a class="topbar__name" href="#top" data-scroll-to="#top">M3 Competition</a>
     <a class="topbar__logo" href="#top" data-scroll-to="#top" aria-label="BMW, voltar ao início">
-      <img src="assets/brand/bmw-logo-light.svg" alt="" width="38" height="38">
+      <img class="logo-on-dark" src="assets/brand/bmw-logo-light.svg" alt="" width="38" height="38">
+      <img class="logo-on-light" src="assets/brand/bmw-logo.svg" alt="" width="38" height="38">
     </a>
     <a class="topbar__link" href="#ficha" data-scroll-to="#ficha">Ficha técnica</a>
   </header>
@@ -55,13 +40,27 @@
 
       <!-- ===== Passeio guiado pela rolagem ===== -->
       <section class="stage" id="top" aria-label="Apresentação em vídeo controlada pela rolagem">
-        <div class="stage__frame" id="frame">
-          <div class="stage__media" id="media">
-            <video id="film" src="assets/m3-60.mp4" poster="assets/poster.jpg"
-                   muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
+        <div class="zoom" id="zoom">
+          <div class="stage__frame" id="frame">
+            <div class="stage__media" id="media">
+              <video id="film" src="assets/m3-60.mp4" poster="assets/poster.jpg"
+                     muted playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
+              <img class="stage__still" id="still" src="assets/last-frame.jpg" alt="" aria-hidden="true">
+            </div>
+            <div class="stage__shade" aria-hidden="true"></div>
+            <div class="veil" id="veil" aria-hidden="true"></div>
           </div>
-          <div class="stage__shade" aria-hidden="true"></div>
-          <div class="veil" id="veil" aria-hidden="true"></div>
+          <!-- Mosaico: ao fim do passeio a câmera recua e o filme vira o centro de uma folha de fotos -->
+          <div class="mosaic" id="mosaic" aria-hidden="true">
+            <img data-cell="-1,-1" src="assets/photos/estrada-frente-960.jpg" alt="">
+            <img data-cell="0,-1" src="assets/photos/grade-960.jpg" alt="">
+            <img data-cell="1,-1" src="assets/photos/floresta-960.jpg" alt="">
+            <img data-cell="-1,0" src="assets/photos/estudio-perfil-960.jpg" alt="">
+            <img data-cell="1,0" src="assets/photos/estudio-traseira-34-960.jpg" alt="">
+            <img data-cell="-1,1" src="assets/photos/cabine-960.jpg" alt="">
+            <img data-cell="0,1" src="assets/photos/estrada-traseira-960.jpg" alt="">
+            <img data-cell="1,1" src="assets/photos/estudio-frente-960.jpg" alt="">
+          </div>
         </div>
 
         <svg class="stage__lines" id="lines" aria-hidden="true"></svg>
@@ -94,35 +93,39 @@
       <!-- ===== Landing ===== -->
       <main class="landing">
 
-        <!-- Manifesto: as palavras acendem com a rolagem -->
+        <!-- Manifesto: as palavras acendem e as fotos se abrem entre elas -->
         <section class="manifesto" aria-label="Apresentação">
-          <p class="manifesto__text" id="manifesto">Seis cilindros em linha, tração integral com prioridade traseira e uma cabine que olha para quem dirige. A M3 Competition é um sedan de quatro portas que não esconde de onde veio.</p>
+          <p class="manifesto__text" id="manifesto">Seis cilindros em linha <span class="chip"><img src="assets/photos/capo-960.jpg" alt=""></span> tração integral com prioridade traseira <span class="chip"><img src="assets/photos/roda-960.jpg" alt=""></span> e uma cabine que olha para quem dirige <span class="chip"><img src="assets/photos/cabine-960.jpg" alt=""></span> Um sedan de quatro portas que não esconde de onde veio.</p>
         </section>
 
-        <!-- Desenho -->
-        <section class="split" id="design" aria-labelledby="designTitle">
-          <div class="split__text">
-            <h2 id="designTitle">Bonito até parado</h2>
-            <p>Grade vertical, para-lamas largos e rodas de medidas diferentes na frente e atrás. A M3 Competition mostra o que é antes mesmo de ligar o motor.</p>
-            <dl class="facts">
+        <!-- Desenho: a câmera se aproxima até a foto ocupar a tela -->
+        <section class="dolly" id="design" aria-labelledby="designTitle">
+          <div class="dolly__pin">
+            <div class="dolly__head">
+              <h2 id="designTitle">Bonito até parado</h2>
+              <p>Grade vertical, para-lamas largos e rodas de medidas diferentes na frente e atrás. A M3 Competition mostra o que é antes mesmo de ligar o motor.</p>
+            </div>
+            <figure class="dolly__frame">
+              <img src="assets/photos/estudio-tres-quartos.jpg" alt="BMW M3 Competition verde em estúdio, vista em três quartos pela frente" loading="lazy" width="1920" height="1440">
+            </figure>
+            <dl class="dolly__facts">
               <div><dt>Comprimento</dt><dd>4.794 mm</dd></div>
               <div><dt>Largura</dt><dd>1.903 mm</dd></div>
+              <div><dt>Altura</dt><dd>1.438 mm</dd></div>
               <div><dt>Entre-eixos</dt><dd>2.857 mm</dd></div>
             </dl>
           </div>
-          <figure class="split__media reveal">
-            <img src="assets/stills/tres-quartos.jpg" alt="BMW M3 Competition verde vista em três quartos pela frente, com os faróis acesos" loading="lazy" width="1920" height="1080">
-          </figure>
         </section>
 
         <!-- Engenharia: imagem fixa que troca conforme a lista avança -->
         <section class="engineering" id="engenharia" aria-labelledby="engTitle">
           <div class="engineering__media" aria-hidden="true">
             <div class="engineering__frame">
-              <img src="assets/stills/lateral.jpg" alt="" class="is-active" loading="lazy" width="1920" height="1080">
-              <img src="assets/stills/roda.jpg" alt="" loading="lazy" width="1600" height="900">
-              <img src="assets/stills/frente.jpg" alt="" loading="lazy" width="1920" height="1080">
-              <img src="assets/stills/traseira.jpg" alt="" loading="lazy" width="1920" height="1080">
+              <img src="assets/photos/floresta.jpg" alt="" class="is-active" loading="lazy" width="1920" height="1280">
+              <img src="assets/photos/roda.jpg" alt="" loading="lazy" width="1920" height="2560">
+              <img src="assets/photos/curva-traseira.jpg" alt="" loading="lazy" width="1920" height="1280">
+              <img src="assets/photos/estudio-traseira.jpg" alt="" loading="lazy" width="1920" height="1440">
+              <p class="engineering__count"><span class="engineering__num"><span id="engNum"><b>01</b><b>02</b><b>03</b><b>04</b></span></span><small>/ 04</small></p>
             </div>
             <ol class="engineering__steps"><li></li><li></li><li></li><li></li></ol>
           </div>
@@ -151,37 +154,38 @@
           </div>
         </section>
 
-        <!-- Galeria horizontal -->
-        <section class="gallery" id="galeria" aria-labelledby="galleryTitle">
-          <div class="gallery__head">
-            <h2 id="galleryTitle">A volta, quadro a quadro</h2>
-            <p>Cinco momentos do passeio que você acabou de fazer.</p>
-          </div>
-          <div class="gallery__viewport">
-            <ol class="gallery__track" id="galleryTrack">
-              <li class="shot"><img src="assets/stills/traseira.jpg" alt="Traseira da M3 com as lanternas acesas" loading="lazy" width="1920" height="1080"><p>Saída pela traseira, com as lanternas acesas.</p></li>
-              <li class="shot"><img src="assets/stills/lateral.jpg" alt="Lateral da M3 mostrando as rodas pretas e pinças vermelhas" loading="lazy" width="1920" height="1080"><p>Lateral do motorista, rodas forjadas e pinças vermelhas.</p></li>
-              <li class="shot"><img src="assets/stills/frente.jpg" alt="Frente da M3 com a grade vertical e os faróis" loading="lazy" width="1920" height="1080"><p>A frente, com a grade vertical e os faróis de LED.</p></li>
-              <li class="shot"><img src="assets/stills/portas.jpg" alt="M3 com a porta do passageiro aberta mostrando o interior" loading="lazy" width="1920" height="1080"><p>Portas abertas e a entrada na cabine.</p></li>
-              <li class="shot"><img src="assets/stills/cockpit.jpg" alt="Painel da M3 visto do banco traseiro" loading="lazy" width="1920" height="1080"><p>O fim do passeio, de frente para o painel.</p></li>
+        <!-- Galeria em túnel: as fotos vêm do fundo em direção à câmera -->
+        <section class="tunnel" id="galeria" aria-labelledby="galleryTitle">
+          <div class="tunnel__pin">
+            <div class="tunnel__head">
+              <h2 id="galleryTitle">De perto, sem pressa</h2>
+              <p class="tunnel__caption"><span class="tunnel__index" id="tunnelIndex">01</span><span id="tunnelText">Na estrada, de frente.</span></p>
+            </div>
+            <ol class="tunnel__space" id="tunnelSpace">
+              <li data-x="-24" data-y="-4" data-cap="Na estrada, de frente."><img src="assets/photos/estrada-frente-960.jpg" alt="M3 verde vindo de frente numa estrada" loading="lazy" width="960" height="640"></li>
+              <li data-x="22" data-y="8" data-cap="A grade vertical, de perto."><img src="assets/photos/grade-960.jpg" alt="Detalhe da grade dupla vertical com o emblema M3" loading="lazy" width="960" height="720"></li>
+              <li data-x="-18" data-y="10" data-cap="Lanterna e o defletor na tampa." class="is-tall"><img src="assets/photos/lanterna-960.jpg" alt="Detalhe da lanterna traseira e da tampa do porta-malas" loading="lazy" width="960" height="1280"></li>
+              <li data-x="24" data-y="-8" data-cap="Perfil baixo, entre-eixos longo."><img src="assets/photos/estudio-perfil-960.jpg" alt="M3 verde de perfil em estúdio branco" loading="lazy" width="960" height="720"></li>
+              <li data-x="-22" data-y="-6" data-cap="As nervuras do capô." class="is-tall"><img src="assets/photos/vinco-960.jpg" alt="Detalhe do capô verde com nervuras" loading="lazy" width="960" height="1280"></li>
+              <li data-x="20" data-y="6" data-cap="Câmbio M e console em carbono."><img src="assets/photos/cambio-960.jpg" alt="Alavanca do câmbio M Steptronic no console" loading="lazy" width="960" height="720"></li>
+              <li data-x="0" data-y="0" data-cap="E lá vai ela."><img src="assets/photos/estrada-ceu-960.jpg" alt="M3 verde se afastando numa estrada sob céu azul" loading="lazy" width="960" height="640"></li>
             </ol>
           </div>
         </section>
 
-        <!-- Cabine -->
-        <section class="split split--flip" id="cabine" aria-labelledby="cabinTitle">
-          <div class="split__text">
+        <!-- Cabine: a página clareia e as fotos andam em velocidades diferentes -->
+        <section class="cabin" id="cabine" aria-labelledby="cabinTitle">
+          <div class="cabin__text">
             <h2 id="cabinTitle">Aqui dentro, tudo aponta para você</h2>
-            <p>Bancos esportivos M em couro Merino, volante M de três raios e o BMW Curved Display inclinado para o motorista, com BMW iDrive e Operating System 8.5.</p>
+            <p>Bancos esportivos M, volante M de três raios e o BMW Curved Display inclinado para o motorista, com BMW iDrive e Operating System 8.5.</p>
             <dl class="facts">
               <div><dt>Lugares</dt><dd>5</dd></div>
               <div><dt>Porta-malas</dt><dd>480 l</dd></div>
               <div><dt>Tanque</dt><dd>59 l</dd></div>
             </dl>
           </div>
-          <figure class="split__media reveal">
-            <img src="assets/stills/volante.jpg" alt="Volante da M3 com os botões vermelhos e o painel digital ao fundo" loading="lazy" width="1600" height="900">
-          </figure>
+          <figure class="cabin__main"><img src="assets/photos/cabine.jpg" alt="Interior da M3 com volante M, Curved Display e bancos esportivos" loading="lazy" width="1920" height="1440"></figure>
+          <figure class="cabin__side"><img src="assets/photos/volante-960.jpg" alt="Volante M com os botões vermelhos M1 e M2" loading="lazy" width="960" height="1280"></figure>
         </section>
 
         <!-- Versões: comparação com aceleração em barras -->
@@ -293,15 +297,17 @@
           </div>
         </section>
 
-        <!-- Encerramento -->
+        <!-- Encerramento: a foto abre pela mesma fenda da entrada -->
         <section class="closing" aria-labelledby="closingTitle">
-          <img class="closing__bg" src="assets/stills/cockpit.jpg" alt="" loading="lazy" width="1920" height="1080">
-          <div class="closing__content">
-            <h2 id="closingTitle">Quer dar outra volta?</h2>
-            <a class="btn" href="#top" data-scroll-to="#top">
-              Voltar ao começo
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
-            </a>
+          <div class="closing__pin">
+            <div class="closing__media"><img class="closing__bg" src="assets/photos/curva-traseira.jpg" alt="" loading="lazy" width="1920" height="1280"></div>
+            <div class="closing__content">
+              <h2 id="closingTitle">Quer dar outra volta?</h2>
+              <a class="btn" href="#top" data-scroll-to="#top">
+                Voltar ao começo
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+              </a>
+            </div>
           </div>
         </section>
 
@@ -310,7 +316,7 @@
             <a href="https://newsroom.bmwgroup.com/emea/en-ae/the-new-bmw-m3-sedan-en-ae_20260909133622724" target="_blank" rel="noopener">BMW Group PressClub, “The new BMW M3 Sedan” (29/05/2024)</a> e
             <a href="https://newsroom.bmwgroup.com/emea/download/edf7630b-3b8d-4aa1-8a38-ee22d1cf09eb/20260909133618243-759.pdf" target="_blank" rel="noopener">especificações técnicas BMW M3 Sedan (05/2024, PDF)</a>.
           </p>
-          <p>Dados divulgados pela BMW para os mercados europeus (ACEA), com pesos homologados na Alemanha. A própria BMW os chama de provisórios, e eles podem mudar conforme o mercado e os opcionais. Página de apresentação independente, sem vínculo oficial com a BMW. BMW e o logotipo BMW são marcas registradas da BMW AG.</p>
+          <p>Dados divulgados pela BMW para os mercados europeus (ACEA), com pesos homologados na Alemanha. A própria BMW os chama de provisórios, e eles podem mudar conforme o mercado e os opcionais. Fotos: BMW Group. Página de apresentação independente, sem vínculo oficial com a BMW. BMW e o logotipo BMW são marcas registradas da BMW AG.</p>
         </footer>
       </main>
 
